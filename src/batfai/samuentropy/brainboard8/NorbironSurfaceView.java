@@ -353,12 +353,12 @@ public class NorbironSurfaceView extends SurfaceView implements Runnable
             }
             for (NeuronBox nb : nodeBoxes)
             {
-                nb.draw(-startsx, -startsy, canvas);
+                ((NeuronBox)nb.clone()).draw(-startsx, -startsy, canvas);
             }
             canvas.scale(1 / scaleFactor, 1 / scaleFactor);
             for (NeuronBox nb : menuBoxes)
             {
-                nb.draw(0, 0, canvas);
+                ((NeuronBox)nb.clone()).draw(0, 0, canvas);
             }
             canvas.restore();
         }
@@ -529,12 +529,10 @@ public class NorbironSurfaceView extends SurfaceView implements Runnable
         return true;
     }
 
-    public void stop()
-    {
+    public void stop() {
         running = false;
     }
-
-    @Override
+    
     public void run()
     {
         long now = System.currentTimeMillis(), newnow;
